@@ -1,0 +1,158 @@
+
+Conversation opened. 2 messages. All messages read.
+
+Skip to content
+Using Gmail with screen readers
+ashish8469@gmail.com 
+
+1 of 12
+Datastructure program: Stack behave as a queue. PFA.
+Inbox
+x
+
+Ashish Gupta
+Attachments
+Nov 14, 2018, 12:43 PM (2 days ago)
+to me
+
+
+Attachments area
+
+Vasant Rao <vasant.g.rao@gmail.com>
+Nov 14, 2018, 1:24 PM (2 days ago)
+to Ashish
+
+Thanks Bhai ..
+
+On Wed, Nov 14, 2018, 12:43 PM Ashish Gupta <ashish8469@gmail.com wrote:
+
+
+
+Vasant Rao
+3:52 PM (4 minutes ago)
+to Ashish
+
+https://github.com/madhusala/madhusalastuff.git
+
+Created a repository.
+
+Thanks & Regards
+
+G Vasant Rao
+
+
+On Wed, Nov 14, 2018 at 12:43 PM Ashish Gupta <ashish8469@gmail.com> wrote:
+
+using System;
+
+namespace ConsoleApp1
+{
+    public class Stack
+    {
+        public int top;
+        public int[] arr;
+        public Stack()
+        {
+            top = -1;
+            arr = new int[10];
+        }
+        public void Push(int item)
+        {
+            arr[++top] = item;
+        }
+        public void Pop()
+        {
+            if (top == -1)
+            {
+                Console.WriteLine("Stack underflowing..");
+            }
+            else
+            {
+                Console.WriteLine("The deleted item is {0}", arr[top--]);
+            }
+        }
+        public void Display()
+        {
+            Console.WriteLine("Item available in stack");
+            for (int i = top; i >= 0; i--)
+            {
+                Console.WriteLine(arr[i]);
+            }
+        }
+    }
+
+    // With the use of stack implementation implmenting stack which behaves like queue
+    public class StackAsQueue : Stack
+    {
+        int[] newArr;
+        int newTop;
+
+        public StackAsQueue()
+        {
+            newArr = new int[10];
+            newTop = -1;
+        }
+
+        public new void Push(int item)
+        {
+            if (top == -1)
+            {
+                base.Push(item);
+            }
+            else
+            {
+                PopAll();
+                arr[++top] = item;
+                PushAll();
+            }
+        }
+        public new void Pop()
+        {
+            if (top != -1)
+            {
+                Console.WriteLine("Deleted item is {0}", arr[top]);
+                arr[top--] = 0;
+                PopAll();
+                PushAll();
+            }
+        }
+        private void PopAll() //Pop all from stack n push it to temp stack
+        {
+            for (int i = top; i >= 0; i--)
+            {
+                newArr[++newTop] = arr[top];
+                arr[top--] = 0;
+            }
+        }
+        private void PushAll() // Pop all from temp stack and push into new stack
+        {
+            for (int i = newTop; i >= 0; i--)
+            {
+                arr[++top] = newArr[newTop];
+                newArr[newTop--] = 0;
+            }
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            StackAsQueue obj = new StackAsQueue();
+            obj.Push(10);
+            obj.Push(20);
+            obj.Push(30);
+            obj.Push(40);
+            obj.Display();
+            obj.Pop();
+            obj.Display();
+            obj.Push(50);
+            obj.Display();
+            obj.Pop();
+            obj.Display();
+        }
+    }
+}
+
+Stack behaves like a queue.txt
+Displaying Stack behaves like a queue.txt.
